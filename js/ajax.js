@@ -6,20 +6,20 @@ $(document).ready(function() {
      * @returns {boolean}
      */
     function updateData(data) {
-        var arData = data.split(' ');
+        var jsonData = JSON.parse(data);
         var htmlInsert = "".concat(
-            '<div id="con-', arData[3], '">',
-            ' - '.repeat(parseInt(arData[2]) + 1), arData[3], '<br>',
-            ' - '.repeat(parseInt(arData[2]) + 1), arData[1], '<br>',
-            '<form id="form_', arData[3], '">',
-            '<textarea name="text_comment" form="form_', arData[3], '"></textarea>',
-            '<input name="id_comment" type="hidden" value="', arData[3], '">',
-            '<input name="level_comment" type="hidden" value="', parseInt(arData[2]) + 1, '">',
+            '<div id="con-', jsonData.last_id, '">',
+            ' - '.repeat(parseInt(jsonData.level) + 1), jsonData.last_id, '<br>',
+            ' - '.repeat(parseInt(jsonData.level) + 1), jsonData.text, '<br>',
+            '<form id="form_', jsonData.last_id, '">',
+            '<textarea name="text_comment" form="form_', jsonData.last_id, '"></textarea>',
+            '<input name="id_comment" type="hidden" value="', jsonData.last_id, '">',
+            '<input name="level_comment" type="hidden" value="', parseInt(jsonData.level) + 1, '">',
             '<button type="submit" class="formclass">Отправить</button>',
             '</form>',
             '</div>'
         );
-        var id = "".concat('#con-', arData[0]);
+        var id = "".concat('#con-', jsonData.parent_id);
         if (id == "#con-0") {
             $('body').append(htmlInsert);
         }
