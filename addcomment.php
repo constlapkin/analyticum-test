@@ -14,13 +14,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
         $new_id = $dbConnection->getLastId();
 
-        $dbConnection->closeConnection();
         $arData = [
             'parent_id' => $_POST['id_comment'],
             'text' => $_POST['text_comment'],
             'level' => $_POST['level_comment'],
-            'last_id' => $new_id[0],
+            'last_id' => $new_id,
         ];
+
         echo json_encode($arData);
     }
 }
